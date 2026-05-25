@@ -97,6 +97,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	http.Handle("/files/", http.StripPrefix("/files/", http.FileServer(http.Dir("./files"))))
+	http.Handle("/", http.FileServer(http.Dir("./static")))
 	http.HandleFunc("/health", healthHandler)
 	http.HandleFunc("/upload", getUploadHandler(client))
 	http.HandleFunc("/ask", getAskHandler(client))
