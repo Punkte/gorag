@@ -1,4 +1,4 @@
-package main
+package services
 
 import (
 	"bytes"
@@ -7,7 +7,7 @@ import (
 	"github.com/ledongthuc/pdf"
 )
 
-func extractText(p string) (string, error) {
+func ExtractText(p string) (string, error) {
 	f, r, err := pdf.Open(p)
 	if err != nil {
 		return "", fmt.Errorf("%w", err)
@@ -21,4 +21,12 @@ func extractText(p string) (string, error) {
 	}
 	buf.ReadFrom(b)
 	return buf.String(), nil
+}
+
+func ChunkText(text string, size int, overlap int) []string {
+	var tab []string
+	for i := 0; i < len(text); i += size - overlap {
+		tab = append(tab, text[i:min(size+i, len(text))])
+	}
+	return tab
 }

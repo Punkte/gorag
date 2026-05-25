@@ -1,4 +1,4 @@
-package main
+package handlers
 
 import (
 	"context"
@@ -10,7 +10,7 @@ import (
 	"github.com/weaviate/weaviate-go-client/v5/weaviate/graphql"
 )
 
-func getDocumentsHandler(client *weaviate.Client) func(w http.ResponseWriter, req *http.Request) {
+func GetDocumentsHandler(client *weaviate.Client) func(w http.ResponseWriter, req *http.Request) {
 	return func(w http.ResponseWriter, req *http.Request) {
 		groupedBy := graphql.Field{
 			Name: "groupedBy", Fields: []graphql.Field{

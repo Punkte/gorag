@@ -1,4 +1,4 @@
-package main
+package services
 
 import (
 	"bytes"
@@ -20,7 +20,7 @@ type OllamaEmbedResponse struct {
 	PromptEvalCount int         `json:"prompt_eval_count"`
 }
 
-func getEmbedding(text string) ([]float32, error) {
+func GetEmbedding(text string) ([]float32, error) {
 	body := OllamaEmbedBody{
 		Model: "nomic-embed-text",
 		Input: text,
