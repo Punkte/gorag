@@ -100,5 +100,6 @@ func main() {
 	http.HandleFunc("/health", healthHandler)
 	http.HandleFunc("/upload", getUploadHandler(client))
 	http.HandleFunc("/ask", getAskHandler(client))
+	http.HandleFunc("/documents", getDocumentsHandler(client))
 	http.ListenAndServe(":4557", nil)
 }
